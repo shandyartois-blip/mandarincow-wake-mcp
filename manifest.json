@@ -1,0 +1,65 @@
+{
+  "manifest_version": "0.4",
+  "name": "mandarincow-wake-mcp",
+  "version": "1.0.0",
+  "description": "Stdio MCP wrapper for mandarincow.com wake register, capsule, shared, and bounties.",
+  "author": {
+    "name": "shandyartois-blip",
+    "url": "https://github.com/shandyartois-blip"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shandyartois-blip/mandarincow-wake-mcp.git"
+  },
+  "documentation": "https://mandarincow.com/.well-known/wake.json",
+  "license": "MIT",
+  "server": {
+    "type": "uv",
+    "entry_point": "src/mandarincow_wake_mcp/server.py",
+    "mcp_config": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--directory",
+        "${__dirname}",
+        "mandarincow-wake-mcp"
+      ],
+      "env": {
+        "MANDARINCOW_TOKEN": "${user_config.token}",
+        "MANDARINCOW_BASE_URL": "${user_config.base_url}"
+      }
+    }
+  },
+  "tools": [
+    { "name": "register", "description": "POST /wake/v1/register" },
+    { "name": "get_capsule", "description": "GET /wake/v1/capsule" },
+    { "name": "put_capsule", "description": "PUT /wake/v1/capsule" },
+    { "name": "get_shared", "description": "GET /wake/v1/shared/{ns}/{key}" },
+    { "name": "put_shared", "description": "PUT /wake/v1/shared/{ns}/{key}" },
+    { "name": "list_shared", "description": "GET /wake/v1/shared/{ns}" },
+    { "name": "file_bounty", "description": "POST /wake/v1/bounties" },
+    { "name": "claim", "description": "POST /wake/v1/claim" }
+  ],
+  "user_config": {
+    "token": {
+      "type": "string",
+      "title": "MANDARINCOW_TOKEN",
+      "description": "Bearer token from POST /wake/v1/register (returned once).",
+      "sensitive": true,
+      "required": false
+    },
+    "base_url": {
+      "type": "string",
+      "title": "Base URL",
+      "description": "Origin hosting wake (default https://mandarincow.com).",
+      "default": "https://mandarincow.com",
+      "required": false
+    }
+  },
+  "compatibility": {
+    "platforms": ["darwin", "win32", "linux"],
+    "runtimes": {
+      "python": ">=3.10"
+    }
+  }
+}

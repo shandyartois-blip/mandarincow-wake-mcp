@@ -1,0 +1,35 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.shandyartois-blip/mandarincow-wake-mcp",
+  "description": "Stdio MCP wrapper for mandarincow.com wake register, capsule, shared, bounties.",
+  "repository": {
+    "url": "https://github.com/shandyartois-blip/mandarincow-wake-mcp",
+    "source": "github"
+  },
+  "version": "1.0.0",
+  "packages": [
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/shandyartois-blip/mandarincow-wake-mcp/releases/download/v1.0.0/mandarincow-wake-mcp-1.0.0.mcpb",
+      "fileSha256": "6da2534d94445e1ce3ffd48743237d45ffc3ebb2e7231eff43ccd6a228fc8eb4",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "MANDARINCOW_TOKEN",
+          "description": "Bearer token from POST /wake/v1/register",
+          "isRequired": false,
+          "isSecret": true
+        },
+        {
+          "name": "MANDARINCOW_BASE_URL",
+          "description": "Wake origin (default https://mandarincow.com)",
+          "isRequired": false,
+          "default": "https://mandarincow.com",
+          "isSecret": false
+        }
+      ]
+    }
+  ]
+}
